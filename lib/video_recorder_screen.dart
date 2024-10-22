@@ -57,33 +57,6 @@ class _VideoRecorderScreenState extends State<VideoRecorderScreen>
     }
   }
 
-  // refreshAlreadyCapturedImages() async {
-  //   final directory = await getApplicationDocumentsDirectory();
-  //   List<FileSystemEntity> fileList = await directory.list().toList();
-  //   allFileList.clear();
-  //   List<Map<int, dynamic>> fileNames = [];
-  //   for (var file in fileList) {
-  //     if (file.path.contains('.jpg') || file.path.contains('.mp4')) {
-  //       allFileList.add(File(file.path));
-  //       String name = file.path.split('/').last.split('.').first;
-  //       fileNames.add({0: int.parse(name), 1: file.path.split('/').last});
-  //     }
-  //   }
-  //   if (fileNames.isNotEmpty) {
-  //     final recentFile =
-  //         fileNames.reduce((curr, next) => curr[0] > next[0] ? curr : next);
-  //     String recentFileName = recentFile[1];
-  //     if (recentFileName.contains('.mp4')) {
-  //       _videoFile = File('${directory.path}/$recentFileName');
-  //       _imageFile = null;
-  //     } else {
-  //       _imageFile = File('${directory.path}/$recentFileName');
-  //       _videoFile = null;
-  //     }
-  //     setState(() {});
-  //   }
-  // }
-
   Future<XFile?> takePicture() async {
     final CameraController? cameraController = controller;
     if (cameraController!.value.isTakingPicture) {
@@ -180,7 +153,6 @@ class _VideoRecorderScreenState extends State<VideoRecorderScreen>
         controller = cameraController;
       });
     }
-    // Update UI if controller updated
     cameraController.addListener(() {
       if (mounted) setState(() {});
     });
@@ -231,8 +203,6 @@ class _VideoRecorderScreenState extends State<VideoRecorderScreen>
         initialState: CustomTimerState.reset,
         interval: CustomTimerInterval.seconds,
         vsync: this);
-    // Hide the status bar in Android
-    // SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
     getPermissionStatus();
     super.initState();
   }
@@ -257,21 +227,6 @@ class _VideoRecorderScreenState extends State<VideoRecorderScreen>
     _controller!.dispose();
     super.dispose();
   }
-
-  // Future<void> selectVideoFromFile() async {
-  //   videoFile = await _picker.pickVideo(source: ImageSource.gallery);
-
-  //   if (videoFile == null) {
-  //     return;
-  //   }
-  //   Navigator.of(context).pushNamed(AppRoutes().videoPreviewScreen,
-  //       arguments: {"video": videoFile});
-  //   // Navigator.of(context).push(
-  //   //   MaterialPageRoute(builder: (context) {
-  //   //     return EditorView(videoFile!);
-  //   //   }),
-  //   // );
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -582,51 +537,7 @@ class _VideoRecorderScreenState extends State<VideoRecorderScreen>
                                 ],
                               ),
                             ),
-                            // InkWell(
-                            //   onTap: _imageFile != null || _videoFile != null
-                            //       ? () {
-                            //           Navigator.of(context).push(
-                            //             MaterialPageRoute(
-                            //               builder: (context) =>
-                            //                   PreviewScreen(),
-                            //             ),
-                            //           );
-                            //         }
-                            //       : null,
-                            //   child: Container(
-                            //     width: 60,
-                            //     height: 60,
-                            //     decoration: BoxDecoration(
-                            //       color: Colors.black,
-                            //       borderRadius: BorderRadius.circular(10.0),
-                            //       border: Border.all(
-                            //         color: Colors.white,
-                            //         width: 2,
-                            //       ),
-                            //       image: _imageFile != null
-                            //           ? DecorationImage(
-                            //               image: FileImage(_imageFile!),
-                            //               fit: BoxFit.cover,
-                            //             )
-                            //           : null,
-                            //     ),
-                            //     child: videoController != null &&
-                            //             videoController!.value.isInitialized
-                            //         ? ClipRRect(
-                            //             borderRadius:
-                            //                 BorderRadius.circular(8.0),
-                            //             child: AspectRatio(
-                            //               aspectRatio: videoController!
-                            //                   .value.aspectRatio,
-                            //               child:
-                            //                   VideoPlayer(videoController!),
-                            //             ),
-                            //           )
-                            //         : Container(),
-                            //   ),
-                            // ),
                             InkWell(
-                              // onTap: () => selectVideoFromFile(),
                               child: Container(
                                 width: 60,
                                 height: 60,

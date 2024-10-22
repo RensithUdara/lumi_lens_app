@@ -1,4 +1,5 @@
 import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:lumi_lens_app/video_recorder_screen.dart';
 
@@ -31,7 +32,8 @@ class HomeWidget extends StatefulWidget {
   _HomeWidgetState createState() => _HomeWidgetState();
 }
 
-class _HomeWidgetState extends State<HomeWidget> with SingleTickerProviderStateMixin {
+class _HomeWidgetState extends State<HomeWidget>
+    with SingleTickerProviderStateMixin {
   late AnimationController _animationController;
   late Animation<double> _scaleAnimation;
 
@@ -81,7 +83,7 @@ class _HomeWidgetState extends State<HomeWidget> with SingleTickerProviderStateM
                     fontWeight: FontWeight.bold,
                     color: Colors.white.withOpacity(0.9),
                     letterSpacing: 1.4,
-                    shadows: [
+                    shadows: const [
                       Shadow(
                         blurRadius: 10.0,
                         color: Colors.black26,
@@ -97,8 +99,10 @@ class _HomeWidgetState extends State<HomeWidget> with SingleTickerProviderStateM
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50),
                       ),
-                      padding: const EdgeInsets.symmetric(vertical: 22, horizontal: 48),
-                      backgroundColor: Colors.tealAccent.shade700.withOpacity(0.75),
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 22, horizontal: 48),
+                      backgroundColor:
+                          Colors.tealAccent.shade700.withOpacity(0.75),
                       elevation: 15,
                       shadowColor: Colors.black45,
                       animationDuration: const Duration(milliseconds: 300),
